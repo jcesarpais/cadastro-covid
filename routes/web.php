@@ -12,11 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'web'], function(){
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+    
+    Auth::routes();
+    
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');  
+
+    Route::get('/cadastro/cadastrar', [App\Http\Controllers\covid19Controller::class, 'cadastrar'])->name('CadastroPacientes');
+
+    Route::get('/cadastro/buscar', [App\Http\Controllers\covid19Controller::class, 'buscar'])->name('BuscaPacientes');
+
+    Route::get('/cadastro/result', [App\Http\Controllers\covid19Controller::class, 'result'])->name('Resultado');
+    
+    Route::get('/buscar/{id}', function ($id){
+        return view('pesquisa', ['id' => $id]);
+    });
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

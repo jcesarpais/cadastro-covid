@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Cadastro Covid19')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,7 +16,18 @@
                         </div>
                     @endif
 
-                    <h1>Seja bem vindo ao cadastro de Pacientes COVID19</h1>
+                    <section class="segura">
+
+                        <div class="botoes">
+                            <a href="cadastro/cadastrar"> <button type="button" class="btn btn-primary">Cadastrar</button></a>
+                            
+                            
+                            <a href="cadastro/buscar"><button type="button" class="btn btn-success">Buscar</button></a>
+                            
+                        </div>
+
+                    </section>
+                    
                 </div>
             </div>
         </div>

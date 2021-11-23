@@ -7,24 +7,28 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Cadastro COVID19</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    {{-- Fonts do Google --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- Css Bootstrap --}}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        
+    {{-- Css da Aplicação --}}
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Cad Covid19') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +39,11 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -74,9 +79,20 @@
                 </div>
             </div>
         </nav>
-
+        <h1 class="text-center">Cadastro de Pacientes Covid19</h1>
         <main class="py-4">
             @yield('content')
+
+            <br>
+            <footer class="bg-light text-center text-lg-start">
+            <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2021 Copyright: Cadastro de Pacientes Covid19 - V 2.0 - Em Laravel
+                    
+                </div>
+            <!-- Copyright -->
+            </footer>
+            
         </main>
     </div>
 </body>
