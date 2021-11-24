@@ -20,9 +20,9 @@ class covid19Controller extends Controller
 
     public function result(){
 
-        $cadastro = cadastro::all();
+        $res = cadastro::all();
 
-        return view ('cadastro.cadastro',['cadastro' => $cadastro]);
+        return view ('cadastro.result', ['res' => $res]);
     }
 
 }

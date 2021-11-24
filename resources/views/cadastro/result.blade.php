@@ -4,9 +4,9 @@
 
 @section('content')
 
-@foreach($cadastro as $cadastro)
+@foreach($res as $cadastro)
 
-<p>{{ $cadastro->title}} -- {{ $cadastro->description }}</p>
+    <p>{{ $cadastro->title }} -- {{ $cadastro->description }}</p>
 
 @endforeach
 
