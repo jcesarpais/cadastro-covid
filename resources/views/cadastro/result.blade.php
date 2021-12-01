@@ -7,6 +7,17 @@
 @foreach($pacientes as $cadastro)
     <div class="container">
         <div class="row justify-content-center">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($erros->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
             <div class="col-md-8">
                 <table class="table mt-3">
                     <thead class="thead-dark">
@@ -30,7 +41,7 @@
                     <tbody>
                         <tr>
                             <td>{{ $cadastro->id }} </td>
-                            <td>{{ $cadastro->nome }}</td>
+                            <td class="@error('title') is-invalid @enderror" >{{ $cadastro->nome }}</td>
                             <td>{{ $cadastro->genero }}</td>
                             <td>{{ $cadastro->sus }}</td>
                             <td>{{ $cadastro->RG }}</td>

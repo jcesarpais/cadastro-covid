@@ -53,18 +53,18 @@ class covid19Controller extends Controller
     public function update(Request $request, $id){
 
         
-        $pacientes = [
-            'nome' => $request->nome,
-            'genero' => $request->genero,
-            'sus' => $request->sus,
-            'rg' => $request->rg,
-            'cpf' => $request->cpf,
-            'cep' => $request->cep,
-            'cidade' => $request->cidade,
-            'estado' => $request->estado,
-            'teste' => $request->teste,
+        $pacientes = $request->validate([
+            'nome' => 'required',
+            'genero' => 'required',
+            'sus' => 'required',
+            'rg' => 'required',
+            'cpf' => 'required',
+            'cep' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
+            'teste' => 'required',
             
-        ];
+        ]);
 
         cadastro::where('id', $id)->update($pacientes);
 
