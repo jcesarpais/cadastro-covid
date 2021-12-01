@@ -20,14 +20,18 @@ Route::group(['middleware' => 'web'], function(){
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');  
 
-    Route::get('/cadastro/cadastrar', [App\Http\Controllers\covid19Controller::class, 'cadastrar'])->name('CadastroPacientes');
+    Route::get('/cadastro/cadastrar', [App\Http\Controllers\covid19Controller::class, 'cadastrar'])->name('cadastro.cadastrar')->middleware('auth');
 
-    Route::get('/cadastro/buscar', [App\Http\Controllers\covid19Controller::class, 'buscar'])->name('BuscaPacientes');
+    Route::get('/cadastro/buscar', [App\Http\Controllers\covid19Controller::class, 'buscar'])->name('cadastro.buscar')->middleware('auth');
 
-    Route::get('/cadastro/result', [App\Http\Controllers\covid19Controller::class, 'result'])->name('Resultado');
+    Route::get('/cadastro/result', [App\Http\Controllers\covid19Controller::class, 'result'])->name('cadastro.result')->middleware('auth');
     
-    Route::get('/buscar/{id}', function ($id){
-        return view('pesquisa', ['id' => $id]);
-    });
+    Route::get('/cadastro/edit/{id}', [App\Http\Controllers\covid19Controller::class, 'edit'])->where('id', '[0-9]+')->name('cadastro.edit')->middleware('auth');
+
+    Route::put('/{id}', [App\Http\Controllers\covid19Controller::class, 'update'])->where('id', '[0-9]+')->name('cadastro.update')->middleware('auth');
+    
+    Route::post('/cadastro', [App\Http\Controllers\covid19Controller::class, 'store'])->name('cadastro.store')->middleware('auth');
+
+    
 });
 

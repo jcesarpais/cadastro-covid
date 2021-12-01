@@ -18,11 +18,58 @@ class covid19Controller extends Controller
         return view('cadastro.buscar');
     }
 
-    public function result(){
+   public function result(Request $request){
 
-        $res = cadastro::all();
+        $search = $request->get('search');
+        
+        $pacientes = cadastro::where('nome', 'LIKE', '%'.$search.'%')->get();
+        
+        return view ('cadastro.result', ['pacientes' => $pacientes]);
+    } 
 
-        return view ('cadastro.result', ['res' => $res]);
+    public function store(Request $request){
+
+        $pacientes = cadastro::create($request->all());
+        
+        return redirect()->route('cadastro.cadastrar');
+    }
+
+    public function edit($id){
+
+        $pacientes = cadastro::where('id', $id)->first();
+
+        if(!empty($pacientes)){
+
+            return view ('cadastro.edit', ['pacientes' => $pacientes]);
+
+        }
+        else{
+
+            return redirect()->route('cadastro.result');
+        }
+        
+    }
+
+    public function update(Request $request, $id){
+
+        
+        $pacientes = [
+            'nome' => $request->nome,
+            'genero' => $request->genero,
+            'sus' => $request->sus,
+            'rg' => $request->rg,
+            'cpf' => $request->cpf,
+            'cep' => $request->cep,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'teste' => $request->teste,
+            
+        ];
+
+        cadastro::where('id', $id)->update($pacientes);
+
+        return redirect()->route('cadastro.result');
+
     }
 
 }

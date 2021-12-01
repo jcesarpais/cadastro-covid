@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class cadastro extends Model
 {
-    protected $table = 'cadastro';
     use HasFactory;
+    
+    protected $table = 'cadastro';
+    
+    protected $fillable = ['nome', 'genero', 'sus', 'rg', 'cpf', 'cep', 'endereco', 'cidade', 'estado', 'teste'];
 }

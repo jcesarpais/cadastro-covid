@@ -21,18 +21,18 @@
                         <h1>Buscar Paciente</h1>
                     </header>
                     <section class="area-form">
-                        <form name="pesquisa" action="php/pesquisa.php" method="POST">
-                            <fieldset>
-                                <input type="hidden" name="IDpaciente" >
-                                <div class="campo">
-                                    <label>SUS</label>
-                                    <input type="text" id="buscar" name="buscar" placeholder="Digite o número do cartão SUS..." >
-                                </div>
-                                <div class="botoes">
-                                    <button type="submit" class="btn btn-secondary" value="Buscar">Buscar</button>
-                                    <a href="../home"><button type="button" class="btn btn-primary">Voltar</button></a>
-                                </div>
-                            </fieldset>
+                        <form name="pesquisa" action="{{ route('cadastro.result') }}" method="GET">
+                            
+                            <input type="hidden" name="IDpaciente" >
+                            <div class="form-group">
+                                <label>Digite o Nome do Paciente</label>
+                                <input type="text" id="search" name="search" placeholder="Digite o número do cartão SUS..." >
+                            </div>
+                            <div class="botoes">
+                                <button type="submit" class="btn btn-secondary" value="Buscar">Buscar</button>
+                                <a href="{{ route('home') }}"><button type="button" class="btn btn-primary">Voltar</button></a>
+                            </div>
+                            
                         </form>
                     </section>
                 </div>
